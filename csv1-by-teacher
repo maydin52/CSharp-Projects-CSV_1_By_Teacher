@@ -1,0 +1,59 @@
+
+Dosyalar
+1-Metin Dosyaları
+  ***Daha çok;Veri paylaşımı amacıyla kullanılır...
+  *** CSV(Comma Seperated Values)
+  *** XML
+  *** JSON
+2-Binary Dosyalar(header,data)
+
+
+Odev:Urunler için(ID,Urun Adi,Fiyat,Kategori) bilgilerini CSV olarak bir dosyada saklayan ve okuyan uygulamayı Windows Forms kullarak yazınız? (Uygulamada INSERT, UPDATE, DELETE , SELECT(Arama)) işlemleri olmalı... UrunID'ye gore arama yapılabilmeli..
+*** Ekstra Rapor olarak; kategorisi aynı olan urunler... 
+*** Urun sınıfıi ve UrunYonetici sınıfı olsun(CRUD islemleri dosyadan okuma yazma islemleri olsun...)
+
+**** Kayıt Silinirken Kullanıcıya sor evet derse sil demezse silme...
+
+//------------------------------------------------------------------------------------------------------------------------
+
+public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btnDosyaYaz_Click(object sender, EventArgs e)
+        {
+            //Yapilacak ise gore;
+            // dosya write yada append modunda açılabilinir... 
+            StreamWriter sw = new StreamWriter("data.txt", true);
+            for (int i = 0; i < 5; i++)
+                sw.WriteLine("emened" + i);
+
+            sw.Close();
+
+        }
+
+        private void btnOku_Click(object sender, EventArgs e)
+        {
+            StreamReader sr = new StreamReader("data.txt");
+
+            //butun dosyayı tek seferde okur...
+            //textBox1.Text = sr.ReadToEnd();
+
+
+            do
+            {
+                listBox1.Items.Add(sr.ReadLine());
+            } while (!sr.EndOfStream);
+
+            sr.Close();
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
